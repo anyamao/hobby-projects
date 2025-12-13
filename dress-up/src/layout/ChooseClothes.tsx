@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useCharacter } from "../hooks/useCharacter";
+import { useCharacter } from "../contexts/CharacterContext";
 
 interface Category {
   id: string;
@@ -18,10 +18,10 @@ interface ManifestData {
 }
 
 const ChooseClothes = () => {
-  const { clothing, setItem, resetAll, getLayers } = useCharacter();
   const [manifest, setManifest] = useState<ManifestData | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
+  const { setItem, clothing, getLayers } = useCharacter();
 
   useEffect(() => {
     fetch("/manifest.json")
@@ -38,6 +38,31 @@ const ChooseClothes = () => {
         setIsLoading(false);
       });
   }, []);
+
+  const categoryMapping: Record<string, keyof ClothingItem> = {
+    eyes: "eyes", // если добавишь eyes в ClothingItem
+  };
+
+  const handleItemSelect = (item: ClothingItem) => {
+    console.log("Selected item:", item);
+    console.log("Selected category:", selectedCategory);
+
+    // Получаем соответствующую категорию для useCharacter
+    const characterCategory = categoryMapping[selectedCategory];
+    console.log("Mapped to character category:", characterCategory);
+
+    // Если категория есть в маппинге, обновляем
+    if (characterCategory && setItem) {
+      setItem(characterCategory as any, item.real);
+      console.log(`Added ${item.real} to ${characterCategory}`);
+    } else {
+      console.warn(`Category ${selectedCategory} not found in mapping`);
+    }
+    setTimeout(() => {
+      console.log("Current clothing state after:", clothing);
+      console.log("Current layers:", getLayers());
+    }, 100);
+  };
 
   if (isLoading) {
     return (
@@ -59,14 +84,6 @@ const ChooseClothes = () => {
     (c) => c.id === selectedCategory
   );
   const items = currentCategory?.items || [];
-
-  const handleItemSelect = (item: ClothingItem) => {
-    if (setItem) {
-      setItem(selectedCategory as any, item.real);
-    }
-
-    console.log(`Selected ${selectedCategory}:`, item);
-  };
 
   return (
     <div className="flex flex-1 min-h-0 h- flex-col ">

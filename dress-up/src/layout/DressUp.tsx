@@ -1,14 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useCharacter } from "../hooks/useCharacter";
 import CharacterDisplay from "../hooks/CharacterDisplay";
 import { useSound } from "../hooks/useSound";
 import ChooseClothes from "../layout/ChooseClothes";
+import { useCharacter } from "../contexts/CharacterContext";
 
 const DressUp = () => {
-  const { clothing, setItem, resetAll, getLayers } = useCharacter();
+  const { getLayers } = useCharacter();
   const layers = getLayers();
   const { playClick, toggleMusic, isMusicPlaying } = useSound();
+
+  console.log("DressUp layers:", layers);
+  console.log(
+    "Looking for eyes layer:",
+    layers.find((l) => l.alt === "eyes")
+  );
 
   return (
     <div className="min-w-screen min-h-screen top-0 left-0 bg-pink-200  flex flex-col items-center overflow-hidden">

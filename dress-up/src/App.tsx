@@ -5,6 +5,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useState } from "react";
+import { CharacterProvider } from "./contexts/CharacterContext";
 import DressUp from "./layout/DressUp";
 import "./App.css";
 
@@ -27,12 +28,14 @@ function Home() {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dress-up" element={<DressUp />} />
-      </Routes>
-    </Router>
+    <CharacterProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dress-up" element={<DressUp />} />
+        </Routes>
+      </Router>
+    </CharacterProvider>
   );
 }
 
