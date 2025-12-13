@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type ClothingItem = {
-  top: string | null;
-  bottom: string | null;
+  tops: string | null;
+  bottoms: string | null;
   coat: string | null;
   socks: string | null;
   boots: string | null;
@@ -40,18 +40,18 @@ interface CharacterProviderProps {
 
 export const CharacterProvider = ({ children }: CharacterProviderProps) => {
   const [clothing, setClothing] = useState<ClothingItem>({
-    top: null,
-    bottom: null,
+    tops: null,
+    bottoms: null,
     coat: null,
     socks: null,
     boots: null,
     decorations: null,
     brows: "brows-1.png",
     mouth: "mouth-1.png",
-    hairFront: "hair-front/hair-front-02-real.png",
-    hairBack: "hair-back/hair-back-2.png",
+    hairFront: "hair-front/hair-front-01-real.png",
+    hairBack: "hair-back/hair-back-01-real.png",
     ears: "ears.png",
-    eyes: "eyes/eyes-02-real.png",
+    eyes: "eyes/eyes-01-real.png",
   });
 
   const setItem = (category: keyof ClothingItem, item: string | null) => {
@@ -64,18 +64,18 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
 
   const resetAll = () => {
     setClothing({
-      top: null,
-      bottom: null,
+      tops: null,
+      bottoms: null,
       coat: null,
       socks: null,
       boots: null,
       decorations: null,
       brows: "brows-1.png",
       mouth: "mouth-1.png",
-      hairFront: "hair-front/hair-front-02-real.png",
-      hairBack: "hair-back/hair-back-1.png",
+      hairFront: "hair-front/hair-front-01-real.png",
+      hairBack: "hair-back/hair-back-01-real.png",
       ears: "ears.png",
-      eyes: "eyes/eyes-02-real.png",
+      eyes: "eyes/eyes-01-real.png",
     });
   };
 
@@ -101,8 +101,8 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
         alt: "socks",
         zIndex: 5,
       },
-      clothing.bottom && {
-        src: clothing.bottom,
+      clothing.bottoms && {
+        src: clothing.bottoms,
         alt: "bottom",
         zIndex: 6,
       },
@@ -111,9 +111,9 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
         alt: "boots",
         zIndex: 7,
       },
-      clothing.top && {
-        src: clothing.top,
-        alt: "top",
+      clothing.tops && {
+        src: clothing.tops,
+        alt: "tops",
         zIndex: 8,
       },
       clothing.decorations && {

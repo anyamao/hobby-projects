@@ -33,6 +33,131 @@
           "real": "hair-front/hair-front-02-real.png"
         }
       ]
+    },
+    {
+      "id": "hairBack",
+      "name": "hairBack",
+      "icon": "blocks/back-hair-block.png",
+      "items": [
+        {
+          "id": "hair-back-01",
+          "preview": "hair-back/hair-back-01-preview.png",
+          "real": "hair-back/hair-back-01-real.png"
+        },
+        {
+          "id": "hair-back-02",
+          "preview": "hair-back/hair-back-02-preview.png",
+          "real": "hair-back/hair-back-02-real.png"
+        },
+        {
+          "id": "hair-back-03",
+          "preview": "hair-back/hair-back-03-preview.png",
+          "real": "hair-back/hair-back-03-real.png"
+        },
+        {
+          "id": "hair-back-04",
+          "preview": "hair-back/hair-back-04-preview.png",
+          "real": "hair-back/hair-back-04-real.png"
+        },
+        {
+          "id": "hair-back-05",
+          "preview": "hair-back/hair-back-05-preview.png",
+          "real": "hair-back/hair-back-05-real.png"
+        },
+        {
+          "id": "hair-back-06",
+          "preview": "hair-back/hair-back-06-preview.png",
+          "real": "hair-back/hair-back-06-real.png"
+        },
+        {
+          "id": "hair-back-07",
+          "preview": "hair-back/hair-back-07-preview.png",
+          "real": "hair-back/hair-back-07-real.png"
+        },
+        {
+          "id": "hair-back-08",
+          "preview": "hair-back/hair-back-08-preview.png",
+          "real": "hair-back/hair-back-08-real.png"
+        },
+        {
+          "id": "hair-back-09",
+          "preview": "hair-back/hair-back-09-preview.png",
+          "real": "hair-back/hair-back-09-real.png"
+        }
+      ]
+    },
+    {
+      "id": "tops",
+      "name": "Tops",
+      "icon": "blocks/top-block.png",
+      "items": [
+        {
+          "id": "top-01",
+          "preview": "tops/top-01-preview.png",
+          "real": "tops/top-01-real.png"
+        },
+        {
+          "id": "top-02",
+          "preview": "tops/top-02-preview.png",
+          "real": "tops/top-02-real.png"
+        },
+        {
+          "id": "top-03",
+          "preview": "tops/top-03-preview.png",
+          "real": "tops/top-03-real.png"
+        },
+        {
+          "id": "top-04",
+          "preview": "tops/top-04-preview.png",
+          "real": "tops/top-04-real.png"
+        },
+        {
+          "id": "top-05",
+          "preview": "tops/top-05-preview.png",
+          "real": "tops/top-05-real.png"
+        },
+        {
+          "id": "top-06",
+          "preview": "tops/top-06-preview.png",
+          "real": "tops/top-06-real.png"
+        },
+        {
+          "id": "top-07",
+          "preview": "tops/top-07-preview.png",
+          "real": "tops/top-07-real.png"
+        },
+        {
+          "id": "top-08",
+          "preview": "tops/top-08-preview.png",
+          "real": "tops/top-08-real.png"
+        }
+      ]
+    },
+    {
+      "id": "bottoms",
+      "icon": "blocks/bottom-block.png",
+      "items": [
+        {
+          "id": "bottom-01",
+          "preview": "bottoms/bottom-01-preview.png",
+          "real": "bottoms/bottom-01-real.png"
+        },
+        {
+          "id": "bottom-02",
+          "preview": "bottoms/bottom-02-preview.png",
+          "real": "bottoms/bottom-02-real.png"
+        },
+        {
+          "id": "bottom-03",
+          "preview": "bottoms/bottom-03-preview.png",
+          "real": "bottoms/bottom-03-real.png"
+        },
+        {
+          "id": "bottom-04",
+          "preview": "bottoms/bottom-04-preview.png",
+          "real": "bottoms/bottom-04-real.png"
+        }
+      ]
     }
   ]
 }

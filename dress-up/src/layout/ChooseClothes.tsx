@@ -42,6 +42,9 @@ const ChooseClothes = () => {
   const categoryMapping: Record<string, keyof ClothingItem> = {
     eyes: "eyes",
     hairFront: "hairFront",
+    hairBack: "hairBack",
+    tops: "tops",
+    bottoms: "bottoms",
   };
 
   const handleItemSelect = (item: ClothingItem) => {
