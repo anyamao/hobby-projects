@@ -1,61 +1,91 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useCharacter } from "../hooks/useCharacter";
+import CharacterDisplay from "../hooks/CharacterDisplay";
 
 const DressUp = () => {
+  const { clothing, setItem, resetAll, getLayers } = useCharacter();
+  const layers = getLayers();
   return (
-    <div className="w-screen h-screen top-0 left-0 flex align-center justify-center">
-      <div className=" w-[600px] xl:w-[900px] lg:w-[900px] md:w-[800px] sm:w-[700px] flex flex-col justify-between">
-        <div className="bg-purple-100 flex-1 flex flex-row">
-          <div className=" flex-1 flex flex-col">
-            <div className=" flex">
-              {" "}
-              <img src="direction.png" className="w-[80px] sm:ml-[30px]"></img>
-            </div>
-            <div className="flex-1 flex items-center justify-center">
-              <img
-                src="frame1.png "
-                className=" ml-[90px] fixed w-[500px] sm:w-[500px] md:w-[600px] lg:w-[600px] xl:w-[600px]"
-              ></img>
-            </div>
+    <div className="min-w-screen min-h-screen top-0 left-0 bg-pink-200  flex flex-col items-center overflow-hidden">
+      <div className="w-full h-screen max-w-[700px] bg-blue-200 flex flex-col">
+        <div className="flex flex-row justify-between">
+          <div className=" flex items-center">
+            <img src="icons/direction.png" className="w-[80px] "></img>
+            <p className="text-gray-500 text-[20px]">₍^. .^₎⟆</p>
           </div>
-          <div className=" flex flex-col justify-between sm:mr-[30px] mb-[30px] ">
-            <div className="flex items-center">
-              <img
-                src="more-icon.png"
-                className="w-[70px] hover:scale-110 transition-transform duration:300 cursor:pointer"
-              ></img>
-            </div>
-            <div className="flex flex-col">
-              <img
-                src="save-icon.png"
-                className="w-[70px] hover:scale-110 transition-transform duration:300 cursor:pointer"
-              ></img>
-              <img
-                src="restart-icon.png"
-                className="w-[70px] hover:scale-110 transition-transform duration:300 cursor:pointer"
-              ></img>
-              <img
-                src="delete-icon.png"
-                className="w-[70px] hover:scale-110 transition-transform duration:300 cursor:pointer"
-              ></img>
-            </div>
+          <img
+            src="icons/more-icon.png"
+            className="w-[70px] h-[70px]  right-0  ml-[10px] hover:scale-110 transition-transform duration-300 cursor:pointer"
+          ></img>
+        </div>
+        <div className="flex flex-row justify-end h-[600px] bg-blue-100">
+          <CharacterDisplay layers={layers} />
+          <div className="flex flex-col items-center mt-[290px] z-50">
+            <img
+              src="icons/save-icon.png"
+              className="w-[70px]  hover:scale-110 transition-transform duration-300 cursor-pointer"
+            ></img>
+            <p className="text-gray-400 text-[20px] mt-[-10px]">Save</p>
+            <img
+              src="icons/restart-icon.png"
+              className="w-[70px] hover:scale-110 transition-transform duration-300 cursor-pointer"
+            ></img>
+            <p className="text-gray-400 text-[20px] mt-[-10px]">Clear All</p>
+            <img
+              src="icons/delete-icon.png"
+              className="w-[70px] hover:scale-110 transition-transform duration-300 cursor-pointer"
+            ></img>
+            <p className="text-gray-400 text-[20px] mt-[-10px] ">Remove</p>
+            <p className="text-gray-400 text-[20px] mt-[-10px] ">Item</p>
           </div>
         </div>
-        <div className="flex flex-col ">
-          <div className="bg-purple-200 mt-[1px] flex flex-row items-center justify-center">
-            <img src="eyes-block.png" className="w-[80px]"></img>
-            <img src="bang-block.png" className="w-[80px]"></img>
-            <img src="behind-hair-block.png" className="w-[80px]"></img>
-            <img src="tops-block.png" className="w-[80px]"></img>
-            <img src="coat-block.png" className="w-[80px]"></img>
-            <img src="bottoms-block.png" className="w-[80px]"></img>
-            <img src="socks-block.png" className="w-[80px]"></img>
-            <img src="boots-block.png" className="w-[80px]"></img>
-            <img src="decorations.png" className="w-[80px]"></img>
+        <div className="flex flex-1 min-h-0 h- flex-col ">
+          <div className="flex flex-row overflow-x-auto sm:justify-center  ">
+            <img
+              src="blocks/eyes-block.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300"
+            ></img>
+            <img
+              src="blocks/bang-block.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300 "
+            ></img>
+            <img
+              src="blocks/behind-hair-block.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300"
+            ></img>
+            <img
+              src="blocks/tops-block.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300"
+            ></img>
+            <img
+              src="blocks/coat-block.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300"
+            ></img>
+            <img
+              src="blocks/bottoms-block.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300"
+            ></img>
+            <img
+              src="blocks/socks-block.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300"
+            ></img>
+            <img
+              src="blocks/boots-block.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300"
+            ></img>
+            <img
+              src="blocks/decorations.png"
+              className="w-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300"
+            ></img>
           </div>
-          <div className="bg-green-900">2</div>
+          <div className="grid flex-1 bg-pink-300 min-h-0 overflow-auto  ">
+            12
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default DressUp;
