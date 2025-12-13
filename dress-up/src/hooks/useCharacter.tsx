@@ -29,7 +29,7 @@ export const useCharacter = () => {
     ears: "ears.png",
   });
 
-  const setItem = (categury: keyof ClothingItem, item: string | null) => {
+  const setItem = (category: keyof ClothingItem, item: string | null) => {
     setClothing((prev) => ({
       ...prev,
       [category]: item,
@@ -58,7 +58,7 @@ export const useCharacter = () => {
 
   const getLayers = () => {
     const skin = "white-skin.png";
-    const eyes = "eyes/eyes-purple.png";
+    const eyes = "eyes/eyes-02-real.png";
     const underwear = "underwear.png";
     const ears = "ears.png";
 

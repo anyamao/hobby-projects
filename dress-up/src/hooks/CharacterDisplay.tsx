@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface Layer {
   src: string;
   alt: string;
@@ -9,17 +11,37 @@ interface CharacterDisplayProps {
 }
 
 const CharacterDisplay = ({ layers }: CharacterDisplayProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const mouthLayer = layers.find((layer) => layer.name === "mouth");
   return (
-    <div className="fixed w-[500px] h-[500px] top-[150px] sm:mr-[100px]   ">
-      {layers.map((layer, index) => (
-        <img
-          key={index}
-          src={layer.src}
-          alt={layer.alt}
-          className="absolute top-0 left-0 w-full h-full object-contain"
-          style={{ zIndex: layer.zIndex }}
-        />
-      ))}
+    <div
+      className="fixed w-[500px] h-[500px] top-[150px] sm:mr-[100px]   "
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {layers.map((layer, index) => {
+        const isMouth =
+          layer.alt.toLowerCase().includes("mouth") ||
+          layer.src.toLowerCase().includes("mouth") ||
+          (layer as any).name === "mouth";
+
+        const src = isMouth
+          ? isHovered
+            ? "laugh.png"
+            : "mouth-1.png"
+          : layer.src;
+
+        return (
+          <img
+            key={index}
+            src={src}
+            alt={layer.alt}
+            className="absolute top-0 left-0 w-full h-full object-contain"
+            style={{ zIndex: layer.zIndex }}
+          />
+        );
+      })}
     </div>
   );
 };

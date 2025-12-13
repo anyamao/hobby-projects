@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {
+      "id": "eyes",
+      "name": "Eyes",
+      "icon": "blocks/eyes-block.png",
+      "items": [
+        {
+          "id": "eyes_01",
+          "preview": "eyes/eyes-01-preview.png",
+          "real": "eyes/eyes-01-real.png"
+        },
+        {
+          "id": "eyes_02",
+          "preview": "eyes/eyes-02-preview.png",
+          "real": "eyes/eyes-02-real.png"
+        }
+      ]
+    }
+  ]
+}
