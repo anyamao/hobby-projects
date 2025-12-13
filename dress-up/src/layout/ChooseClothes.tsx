@@ -4,7 +4,7 @@ import { useCharacter } from "../contexts/CharacterContext";
 interface Category {
   id: string;
   icon: string;
-  items: string[];
+  items: ClothingItem[];
 }
 
 interface ClothingItem {
@@ -40,20 +40,19 @@ const ChooseClothes = () => {
   }, []);
 
   const categoryMapping: Record<string, keyof ClothingItem> = {
-    eyes: "eyes", // если добавишь eyes в ClothingItem
+    eyes: "eyes",
+    hairFront: "hairFront",
   };
 
   const handleItemSelect = (item: ClothingItem) => {
     console.log("Selected item:", item);
     console.log("Selected category:", selectedCategory);
 
-    // Получаем соответствующую категорию для useCharacter
     const characterCategory = categoryMapping[selectedCategory];
     console.log("Mapped to character category:", characterCategory);
 
-    // Если категория есть в маппинге, обновляем
     if (characterCategory && setItem) {
-      setItem(characterCategory as any, item.real);
+      setItem(characterCategory, item.real);
       console.log(`Added ${item.real} to ${characterCategory}`);
     } else {
       console.warn(`Category ${selectedCategory} not found in mapping`);

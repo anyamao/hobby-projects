@@ -16,6 +16,23 @@
           "real": "eyes/eyes-02-real.png"
         }
       ]
+    },
+    {
+      "id": "hairFront",
+      "name": "hairFront",
+      "icon": "blocks/front-hair-block.png",
+      "items": [
+        {
+          "id": "hair-front-01",
+          "preview": "hair-front/hair-front-01-preview.png",
+          "real": "hair-front/hair-front-01-real.png"
+        },
+        {
+          "id": "hair-front-02",
+          "preview": "hair-front/hair-front-02-preview.png",
+          "real": "hair-front/hair-front-02-real.png"
+        }
+      ]
     }
   ]
 }
