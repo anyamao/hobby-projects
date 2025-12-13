@@ -3,10 +3,10 @@ import { useState } from "react";
 import CharacterDisplay from "../hooks/CharacterDisplay";
 import { useSound } from "../hooks/useSound";
 import ChooseClothes from "../layout/ChooseClothes";
-import { useCharacter } from "../contexts/CharacterContext";
+import { useCharacter, CharacterProvider } from "../contexts/CharacterContext";
 
 const DressUp = () => {
-  const { getLayers } = useCharacter();
+  const { getLayers, resetAll } = useCharacter();
   const layers = getLayers();
   const { playClick, toggleMusic, isMusicPlaying } = useSound();
 
@@ -42,12 +42,14 @@ const DressUp = () => {
                 playClick();
               }}
             ></img>
-            <p className="text-gray-400 text-[20px] mt-[-10px] ">Save</p>
+            <p className="text-gray-400 text-[20px] mt-[-10px] ">Save/</p>
+            <p className="text-gray-400 text-[20px] mt-[-10px] ">Upload</p>
             <img
               src="icons/restart-icon.png"
               className="w-[70px] hover:scale-110 transition-transform duration-300 cursor-pointer"
               onClick={() => {
                 playClick();
+                resetAll();
               }}
             ></img>
             <p className="text-gray-400 text-[20px] mt-[-10px]">Clear All</p>

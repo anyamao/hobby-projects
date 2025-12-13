@@ -14,6 +14,21 @@
           "id": "eyes_02",
           "preview": "eyes/eyes-02-preview.png",
           "real": "eyes/eyes-02-real.png"
+        },
+        {
+          "id": "eyes_03",
+          "preview": "eyes/eyes-03-preview.png",
+          "real": "eyes/eyes-03-real.png"
+        },
+        {
+          "id": "eyes_04",
+          "preview": "eyes/eyes-04-preview.png",
+          "real": "eyes/eyes-04-real.png"
+        },
+        {
+          "id": "eyes_05",
+          "preview": "eyes/eyes-05-preview.png",
+          "real": "eyes/eyes-05-real.png"
         }
       ]
     },
@@ -156,6 +171,54 @@
           "id": "bottom-04",
           "preview": "bottoms/bottom-04-preview.png",
           "real": "bottoms/bottom-04-real.png"
+        }
+      ]
+    },
+    {
+      "id": "coats",
+      "icon": "blocks/coat-block.png",
+      "items": [
+        {
+          "id": "coat-01",
+          "preview": "coats/coat-01-preview.png",
+          "real": "coats/coat-01-real.png"
+        },
+        {
+          "id": "coat-02",
+          "preview": "coats/coat-02-preview.png",
+          "real": "coats/coat-02-real.png"
+        }
+      ]
+    },
+    {
+      "id": "socks",
+      "icon": "blocks/socks-block.png",
+      "items": [
+        {
+          "id": "socks-01",
+          "preview": "socks/socks-01-preview.png",
+          "real": "socks/socks-01-real.png"
+        },
+        {
+          "id": "socks-02",
+          "preview": "socks/socks-02-preview.png",
+          "real": "socks/socks-02-real.png"
+        }
+      ]
+    },
+    {
+      "id": "boots",
+      "icon": "blocks/boot-block.png",
+      "items": [
+        {
+          "id": "boots-01",
+          "preview": "boots/boots-01-preview.png",
+          "real": "boots/boots-01-real.png"
+        },
+        {
+          "id": "boots-02",
+          "preview": "boots/boots-02-preview.png",
+          "real": "boots/boots-02-real.png"
         }
       ]
     }

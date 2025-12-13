@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 type ClothingItem = {
   tops: string | null;
   bottoms: string | null;
-  coat: string | null;
+  coats: string | null;
   socks: string | null;
   boots: string | null;
   mouth: string;
@@ -42,7 +42,7 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
   const [clothing, setClothing] = useState<ClothingItem>({
     tops: null,
     bottoms: null,
-    coat: null,
+    coats: null,
     socks: null,
     boots: null,
     decorations: null,
@@ -66,7 +66,7 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
     setClothing({
       tops: null,
       bottoms: null,
-      coat: null,
+      coats: null,
       socks: null,
       boots: null,
       decorations: null,
@@ -121,8 +121,8 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
         alt: "decorations",
         zIndex: 9,
       },
-      clothing.coat && {
-        src: clothing.coat,
+      clothing.coats && {
+        src: clothing.coats,
         alt: "coat",
         zIndex: 10,
       },

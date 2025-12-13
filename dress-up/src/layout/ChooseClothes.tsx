@@ -39,12 +39,18 @@ const ChooseClothes = () => {
       });
   }, []);
 
-  const categoryMapping: Record<string, keyof ClothingItem> = {
+  const categoryMapping: Record<
+    string,
+    keyof ReturnType<typeof useCharacter>["clothing"]
+  > = {
     eyes: "eyes",
     hairFront: "hairFront",
     hairBack: "hairBack",
     tops: "tops",
     bottoms: "bottoms",
+    coats: "coats",
+    socks: "socks",
+    boots: "boots",
   };
 
   const handleItemSelect = (item: ClothingItem) => {
@@ -95,7 +101,7 @@ const ChooseClothes = () => {
             key={category.id}
             src={category.icon}
             onClick={() => setSelectedCategory(category.id)}
-            className={`"w-[60px] hover:border-2 hover:border-pink-100 transition-all duration-300 ${
+            className={`"w-[70px] h-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300 ${
               selectedCategory === category.id
                 ? " border-2 border-pink-100 "
                 : ""
@@ -106,12 +112,12 @@ const ChooseClothes = () => {
 
       <div className="grid flex-1 bg-pink-300 min-h-0 overflow-auto  ">
         {" "}
-        <div className="grid grid-cols-5">
+        <div className="grid grid-cols-7">
           {items.map((item) => (
             <img
               onClick={() => handleItemSelect(item)}
               src={item.preview}
-              className="w-[100px] h-[100px]  "
+              className="w-[70px] h-[70px]  "
               loading="lazy"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "/placeholder.png";
