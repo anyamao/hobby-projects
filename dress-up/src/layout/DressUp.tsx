@@ -4,11 +4,13 @@ import CharacterDisplay from "../hooks/CharacterDisplay";
 import { useSound } from "../hooks/useSound";
 import ChooseClothes from "../layout/ChooseClothes";
 import { useCharacter, CharacterProvider } from "../contexts/CharacterContext";
+import { useCRUD } from "../contexts/CRUDContext";
 
 const DressUp = () => {
   const { getLayers, resetAll } = useCharacter();
   const layers = getLayers();
   const { playClick, toggleMusic, isMusicPlaying } = useSound();
+  const { showCRUD, hideCRUD, isVisible } = useCRUD();
 
   console.log("DressUp layers:", layers);
   console.log(
@@ -32,14 +34,16 @@ const DressUp = () => {
             }}
           ></img>
         </div>
-        <div className="flex flex-row justify-end h-[600px] bg-blue-100">
+        <div className="flex flex-row justify-end h-[560px] bg-blue-100">
           <CharacterDisplay layers={layers} />
-          <div className="flex flex-col items-center mt-[290px] z-50">
+          <div className="flex flex-col items-center mt-[220px] z-50">
             <img
               src="icons/save-icon.png"
               className="w-[70px]  hover:scale-110 transition-transform duration-300 cursor-pointer"
               onClick={() => {
                 playClick();
+                if (!isVisible) showCRUD();
+                else if (isVisible) hideCRUD();
               }}
             ></img>
             <p className="text-gray-400 text-[20px] mt-[-10px] ">Save/</p>

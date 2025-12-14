@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useCharacter } from "../contexts/CharacterContext";
+import CRUD from "../hooks/CRUD";
+import { useCRUD } from "../contexts/CRUDContext";
 
 interface Category {
   id: string;
@@ -18,6 +20,7 @@ interface ManifestData {
 }
 
 const ChooseClothes = () => {
+  const { isVisible, hideModal } = useCRUD();
   const [manifest, setManifest] = useState<ManifestData | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
@@ -93,41 +96,49 @@ const ChooseClothes = () => {
   );
   const items = currentCategory?.items || [];
 
-  return (
-    <div className="flex flex-1 min-h-0 h- flex-col ">
-      <div className="flex flex-row overflow-x-auto sm:justify-center  ">
-        {manifest.categories.map((category) => (
-          <img
-            key={category.id}
-            src={category.icon}
-            onClick={() => setSelectedCategory(category.id)}
-            className={`"w-[70px] h-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300 ${
-              selectedCategory === category.id
-                ? " border-2 border-pink-100 "
-                : ""
-            }`}
-          ></img>
-        ))}
-      </div>
-
-      <div className="grid flex-1 bg-pink-300 min-h-0 overflow-auto  ">
-        {" "}
-        <div className="grid grid-cols-7">
-          {items.map((item) => (
+  if (!isVisible) {
+    return (
+      <div className="flex flex-1 min-h-0 h- flex-col ">
+        <div className="flex flex-row overflow-x-auto sm:justify-center  ">
+          {manifest.categories.map((category) => (
             <img
-              onClick={() => handleItemSelect(item)}
-              src={item.preview}
-              className="w-[70px] h-[70px]  "
-              loading="lazy"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "/placeholder.png";
-              }}
-            />
+              key={category.id}
+              src={category.icon}
+              onClick={() => setSelectedCategory(category.id)}
+              className={`"w-[70px] h-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300 ${
+                selectedCategory === category.id
+                  ? " border-2 border-pink-100 "
+                  : ""
+              }`}
+            ></img>
           ))}
         </div>
+
+        <div className="flex flex-1 bg-pink-300 min-h-0 overflow-auto  ">
+          {" "}
+          <div className="grid grid-cols-7">
+            {items.map((item) => (
+              <img
+                onClick={() => handleItemSelect(item)}
+                src={item.preview}
+                className="w-[70px] h-[70px]  "
+                loading="lazy"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/placeholder.png";
+                }}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else if (isVisible) {
+    return (
+      <div className="flex flex-1 min-h-0 h- flex-col bg-pink-300 ">
+        <CRUD></CRUD>
+      </div>
+    );
+  }
 };
 
 export default ChooseClothes;

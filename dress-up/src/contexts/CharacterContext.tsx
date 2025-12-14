@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 type ClothingItem = {
   tops: string | null;
@@ -38,21 +44,48 @@ interface CharacterProviderProps {
   children: ReactNode;
 }
 
+const STORAGE_KEY = "character-outfit";
+
+const defaultClothing: ClothingItem = {
+  tops: null,
+  bottoms: null,
+  coats: null,
+  socks: null,
+  boots: null,
+  decorations: null,
+  brows: "brows-1.png",
+  mouth: "mouth-1.png",
+  hairFront: "hair-front/hair-front-01-real.png",
+  hairBack: "hair-back/hair-back-01-real.png",
+  ears: "ears.png",
+  eyes: "eyes/eyes-01-real.png",
+};
+
 export const CharacterProvider = ({ children }: CharacterProviderProps) => {
-  const [clothing, setClothing] = useState<ClothingItem>({
-    tops: null,
-    bottoms: null,
-    coats: null,
-    socks: null,
-    boots: null,
-    decorations: null,
-    brows: "brows-1.png",
-    mouth: "mouth-1.png",
-    hairFront: "hair-front/hair-front-01-real.png",
-    hairBack: "hair-back/hair-back-01-real.png",
-    ears: "ears.png",
-    eyes: "eyes/eyes-01-real.png",
+  const [clothing, setClothing] = useState<ClothingItem>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return { ...defaultClothing, ...parsed };
+      }
+    } catch (error) {
+      console.error("Error loading from localStorage:", error);
+    }
+    return defaultClothing;
   });
+
+  const saveToStorage = (data: ClothingItem) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (error) {
+      console.error("Error saving to localStorage:", error);
+    }
+  };
+
+  useEffect(() => {
+    saveToStorage(clothing);
+  }, [clothing]);
 
   const setItem = (category: keyof ClothingItem, item: string | null) => {
     console.log(`Setting ${category} to:`, item);
@@ -63,20 +96,7 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
   };
 
   const resetAll = () => {
-    setClothing({
-      tops: null,
-      bottoms: null,
-      coats: null,
-      socks: null,
-      boots: null,
-      decorations: null,
-      brows: "brows-1.png",
-      mouth: "mouth-1.png",
-      hairFront: "hair-front/hair-front-01-real.png",
-      hairBack: "hair-back/hair-back-01-real.png",
-      ears: "ears.png",
-      eyes: "eyes/eyes-01-real.png",
-    });
+    setClothing(defaultClothing);
   };
 
   const getLayers = () => {

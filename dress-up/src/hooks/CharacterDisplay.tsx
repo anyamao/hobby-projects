@@ -37,7 +37,7 @@ const CharacterDisplay = ({ layers }: CharacterDisplayProps) => {
             key={index}
             src={src}
             alt={layer.alt}
-            className="absolute top-0 left-0 w-full h-full object-contain"
+            className="absolute top-[-30px] left-0  w-full h-full object-contain"
             style={{ zIndex: layer.zIndex }}
           />
         );
