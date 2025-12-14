@@ -29,16 +29,16 @@ function Home() {
 
 function App() {
   return (
-    <CRUDProvider>
-      <CharacterProvider>
+    <CharacterProvider>
+      <CRUDProvider>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dress-up" element={<DressUp />} />
           </Routes>
         </Router>
-      </CharacterProvider>
-    </CRUDProvider>
+      </CRUDProvider>
+    </CharacterProvider>
   );
 }
 

@@ -26,6 +26,8 @@ interface CharacterContextType {
   setItem: (category: keyof ClothingItem, item: string | null) => void;
   resetAll: () => void;
   getLayers: () => Array<{ src: string; alt: string; zIndex: number }>;
+  clearStorage: () => void;
+  getCurrentOutfit: () => ClothingItem;
 }
 
 const CharacterContext = createContext<CharacterContextType | undefined>(
@@ -62,6 +64,7 @@ const defaultClothing: ClothingItem = {
 };
 
 export const CharacterProvider = ({ children }: CharacterProviderProps) => {
+  const getCurrentOutfit = () => clothing;
   const [clothing, setClothing] = useState<ClothingItem>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -178,9 +181,12 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
         setItem,
         resetAll,
         getLayers,
+        getCurrentOutfit,
       }}
     >
       {children}
     </CharacterContext.Provider>
   );
 };
+
+export default CharacterProvider;

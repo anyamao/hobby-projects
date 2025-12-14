@@ -116,7 +116,7 @@ const ChooseClothes = () => {
 
         <div className="flex flex-1 bg-pink-300 min-h-0 overflow-auto  ">
           {" "}
-          <div className="grid grid-cols-7">
+          <div className="grid grid-cols-7 mt-[10px] mx-[10px] my-[10px]">
             {items.map((item) => (
               <img
                 onClick={() => handleItemSelect(item)}
@@ -134,7 +134,7 @@ const ChooseClothes = () => {
     );
   } else if (isVisible) {
     return (
-      <div className="flex flex-1 min-h-0 h- flex-col bg-pink-300 ">
+      <div className="flex flex-1  flex-col min-h-0 h- flex-col bg-pink-300 ">
         <CRUD></CRUD>
       </div>
     );
