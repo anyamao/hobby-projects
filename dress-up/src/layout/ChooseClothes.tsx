@@ -102,10 +102,10 @@ const ChooseClothes = () => {
               key={category.id}
               src={category.icon}
               onClick={() => setSelectedCategory(category.id)}
-              className={`"w-[70px] h-[70px] hover:border-2  ${
+              className={`"w-[70px] h-[70px] hover:border-2  cursor-pointer${
                 theme === "dark"
                   ? "hover:border-forth"
-                  : "hover:border-pink-100"
+                  : "hover:border-blue-100"
               }transition-all duration-300 ${
                 selectedCategory === category.id
                   ? ` border-2 ${
@@ -123,12 +123,12 @@ const ChooseClothes = () => {
           } `}
         >
           {" "}
-          <div className="grid grid-cols-7 mt-[10px] mx-[10px] my-[10px]">
+          <div className="grid grid-cols-6 sm:grid-cols-7 mt-[10px] mx-[10px] my-[10px] gap-col-[5px] ">
             {items.map((item) => (
               <img
                 onClick={() => handleItemSelect(item)}
                 src={item.preview}
-                className="w-[70px] h-[70px]  "
+                className="w-[70px] h-[70px] border-[2px] rounded-[5px] border-eight  mr-[5px] cursor-pointer hover:border-ninth"
                 loading="lazy"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "/placeholder.png";

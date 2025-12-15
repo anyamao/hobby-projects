@@ -35,8 +35,12 @@ const CRUD = () => {
     <div className="flex flex-col">
       <div className="flex flex-col">
         <img
-          src="icons/exit.png"
-          className="w-[20px] fixed mt-[5px] ml-[10px] hover:border-[1px] hover:border-pink-200 "
+          src={` ${
+            theme === "dark" ? "icons/exit-dark.png" : "icons/exit.png"
+          }`}
+          className={`w-[20px] fixed mt-[5px] ml-[10px] hover:border-[1px] ${
+            theme === "dark" ? "hover:border-sixth" : "hover:border-pink-200"
+          }`}
           onClick={hideCRUD}
         ></img>
         <p
@@ -54,19 +58,41 @@ const CRUD = () => {
             <div className="flex   flex-shrink-0  flex-col items-center w-[160px]">
               <div className="flex flex-row flex-shrink-0 items-center mb-[5px] justify-between w-[130px]">
                 <img
-                  src="icons/delete.png"
+                  src={` ${
+                    theme === "dark"
+                      ? "icons/delete-dark.png"
+                      : "icons/delete.png"
+                  }`}
                   onClick={() => handleDeleteOutfit(outfit.id)}
-                  className="w-[30px] mt-[1px] hover:outline hover:outline-1 hover:outline-pink-200 "
+                  className={`w-[30px] mt-[1px] hover:outline hover:outline-1 ${
+                    theme === "dark"
+                      ? "hover:outline-sixth"
+                      : "hover:outline-pink-200"
+                  }`}
                 ></img>
                 <img
-                  src="icons/save.png"
+                  src={` ${
+                    theme === "dark" ? "icons/save-dark.png" : "icons/save.png"
+                  }`}
                   onClick={() => handleUpdateOutfit(outfit.id)}
-                  className="w-[30px] mt-[1px] hover:outline hover:outline-1 hover:outline-pink-200"
+                  className={`w-[30px] mt-[1px] hover:outline hover:outline-1 ${
+                    theme === "dark"
+                      ? "hover:outline-sixth"
+                      : "hover:outline-pink-200"
+                  }`}
                 ></img>
                 <img
-                  src="icons/upload.png"
+                  src={` ${
+                    theme === "dark"
+                      ? "icons/upload-dark.png"
+                      : "icons/upload.png"
+                  }`}
                   onClick={() => handleLoadOutfit(outfit)}
-                  className="w-[30px] mt-[1px] hover:outline hover:outline-1 hover:outline-pink-200"
+                  className={`w-[30px] mt-[1px] hover:outline hover:outline-1 ${
+                    theme === "dark"
+                      ? "hover:outline-sixth"
+                      : "hover:outline-pink-200"
+                  }`}
                 ></img>
               </div>
               <div>

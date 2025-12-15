@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTheme } from "../contexts/ThemeContext";
 
 interface Layer {
   src: string;
@@ -13,6 +14,7 @@ interface OutfitPreviewProps {
 
 const OutfitPreview = ({ clothing, size = "medium" }: OutfitPreviewProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { theme } = useTheme();
 
   const getLayers = (): Layer[] => {
     const skin = "white-skin.png";
@@ -93,7 +95,11 @@ const OutfitPreview = ({ clothing, size = "medium" }: OutfitPreviewProps) => {
   };
   return (
     <div
-      className={`relative ${sizeClasses[size]} border border-pink-100 rounded overflow-hidden bg-white`}
+      className={`relative ${
+        sizeClasses[size]
+      } border rounded overflow-hidden ${
+        theme === "dark" ? "bg-sixth border-forth" : "bg-white border-pink-100 "
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

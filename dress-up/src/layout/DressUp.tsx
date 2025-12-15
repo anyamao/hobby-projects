@@ -27,7 +27,11 @@ const DressUp = () => {
         <div className="flex flex-row justify-between">
           <div className=" flex items-center">
             <img
-              src="icons/direction.png"
+              src={` ${
+                theme === "dark"
+                  ? "icons/direction-dark.png"
+                  : "icons/direction.png"
+              }`}
               className="w-[80px] cursor-pointer "
             ></img>
             <p
@@ -39,11 +43,16 @@ const DressUp = () => {
             </p>
           </div>
           <img
-            src="icons/more-icon.png"
+            src={` ${
+              theme === "dark"
+                ? "icons/more-icon-dark.png"
+                : "icons/more-icon.png"
+            }`}
             className="w-[70px] h-[70px]  right-0  ml-[10px] hover:scale-110 transition-transform duration-300 cursor:pointer"
             onClick={() => {
               playClick();
-              show();
+              if (showMenu) hide();
+              else if (!showMenu) show();
             }}
           ></img>
         </div>
@@ -56,14 +65,19 @@ const DressUp = () => {
           <div className="flex flex-col items-center mt-[220px] z-50">
             <Menu />
             <img
-              src="icons/save-icon.png"
-              className="w-[70px]  hover:scale-110 transition-transform duration-300 cursor-pointer"
+              src={` ${
+                theme === "dark"
+                  ? "icons/save-icon-dark.png"
+                  : "icons/save-icon.png"
+              }`}
+              className={`w-[70px]  hover:scale-110 transition-transform duration-300 cursor-pointer `}
               onClick={() => {
                 playClick();
                 if (!isVisible) showCRUD();
                 else if (isVisible) hideCRUD();
               }}
             ></img>
+
             <p
               className={`${
                 theme === "dark" ? "text-sixth" : "text-gray-400"
@@ -79,7 +93,11 @@ const DressUp = () => {
               Upload
             </p>
             <img
-              src="icons/restart-icon.png"
+              src={` ${
+                theme === "dark"
+                  ? "icons/restart-icon-dark.png"
+                  : "icons/restart-icon.png"
+              }`}
               className="w-[70px] hover:scale-110 transition-transform duration-300 cursor-pointer"
               onClick={() => {
                 playClick();
@@ -94,7 +112,11 @@ const DressUp = () => {
               Clear All
             </p>
             <img
-              src="icons/delete-icon.png"
+              src={` ${
+                theme === "dark"
+                  ? "icons/delete-icon-dark.png"
+                  : "icons/delete-icon.png"
+              }`}
               className="w-[70px] hover:scale-110 transition-transform duration-300 cursor-pointer"
               onClick={() => {
                 playClick();

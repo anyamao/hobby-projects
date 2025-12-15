@@ -23,8 +23,12 @@ export const useMenu = () => {
         >
           <div className="flex justify-end">
             <img
-              src="icons/exit.png"
-              className="w-[30px] mr-[30] bg-pink-200 cursor-pointer fixed"
+              src={` ${
+                theme === "dark" ? "icons/exit-dark.png" : "icons/exit.png"
+              }`}
+              className={`w-[30px] mr-[30] ${
+                theme === "dark" ? "bg-seventh" : "bg-pink-200"
+              } cursor-pointer fixed`}
               onClick={() => {
                 setShowMenu(false);
                 console.log(showMenu);
