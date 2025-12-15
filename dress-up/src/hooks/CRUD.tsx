@@ -1,21 +1,21 @@
 import { useCRUD } from "../contexts/CRUDContext";
 import { useCharacter } from "../contexts/CharacterContext";
+import OutfitPreview from "../layout/OutfitPreview";
 
 const CRUD = () => {
   const {
     hideCRUD,
     savedOutfits,
     saveCurrentOutfit,
+    updateOutfit,
     deleteOutfit,
     loadOutfit,
   } = useCRUD();
   const { getCurrentOutfit } = useCharacter();
 
   const handleSaveCurrent = () => {
-    const name = prompt(` ${savedOutfits.length + 1}`);
-    if (name !== null) {
-      saveCurrentOutfit(name);
-    }
+    const name = `${savedOutfits.length + 1}`;
+    saveCurrentOutfit(name);
   };
 
   const handleLoadOutfit = (outfit: any) => {
@@ -23,6 +23,10 @@ const CRUD = () => {
   };
   const handleDeleteOutfit = (id: string) => {
     deleteOutfit(id);
+  };
+  const handleUpdateOutfit = (outfitId: string) => {
+    const currentClothing = getCurrentOutfit();
+    updateOutfit(outfitId, currentClothing);
   };
 
   return (
@@ -43,7 +47,7 @@ const CRUD = () => {
       <div className="flex flex-row  mx-[10px] mt-[10px]   overflow-x-auto">
         {savedOutfits.map((outfit) => (
           <div key={outfit.id} className="flex flex-col ">
-            <div className="flex   flex-shrink-0  flex-col items-center w-[210px]">
+            <div className="flex   flex-shrink-0  flex-col items-center w-[160px]">
               <div className="flex flex-row flex-shrink-0 items-center mb-[5px] justify-between w-[130px]">
                 <img
                   src="icons/delete.png"
@@ -52,7 +56,7 @@ const CRUD = () => {
                 ></img>
                 <img
                   src="icons/save.png"
-                  onClick={handleSaveCurrent}
+                  onClick={() => handleUpdateOutfit(outfit.id)}
                   className="w-[30px] mt-[1px] hover:outline hover:outline-1 hover:outline-pink-200"
                 ></img>
                 <img
@@ -62,15 +66,7 @@ const CRUD = () => {
                 ></img>
               </div>
               <div>
-                {outfit.preview ? (
-                  <img
-                    src={outfit.preview}
-                    alt=""
-                    className="w-[180px] h-[180px] object-contain border border-pink-100 rounded"
-                  />
-                ) : (
-                  "no stuff"
-                )}
+                <OutfitPreview clothing={outfit.clothing} size="small" />
               </div>
             </div>
           </div>

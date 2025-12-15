@@ -8,6 +8,7 @@ import { useState } from "react";
 import { CharacterProvider } from "./contexts/CharacterContext";
 import DressUp from "./layout/DressUp";
 import { CRUDProvider } from "./contexts/CRUDContext";
+
 import "./App.css";
 
 function Home() {

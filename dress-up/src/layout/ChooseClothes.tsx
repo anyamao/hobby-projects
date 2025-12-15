@@ -57,15 +57,10 @@ const ChooseClothes = () => {
   };
 
   const handleItemSelect = (item: ClothingItem) => {
-    console.log("Selected item:", item);
-    console.log("Selected category:", selectedCategory);
-
     const characterCategory = categoryMapping[selectedCategory];
-    console.log("Mapped to character category:", characterCategory);
 
     if (characterCategory && setItem) {
       setItem(characterCategory, item.real);
-      console.log(`Added ${item.real} to ${characterCategory}`);
     } else {
       console.warn(`Category ${selectedCategory} not found in mapping`);
     }

@@ -28,6 +28,7 @@ interface CharacterContextType {
   getLayers: () => Array<{ src: string; alt: string; zIndex: number }>;
   clearStorage: () => void;
   getCurrentOutfit: () => ClothingItem;
+  removeLastItem: () => void;
 }
 
 const CharacterContext = createContext<CharacterContextType | undefined>(
@@ -63,7 +64,29 @@ const defaultClothing: ClothingItem = {
   eyes: "eyes/eyes-01-real.png",
 };
 
+const getDefaultValue = (category: keyof ClothingItem): string | null => {
+  const defaults: ClothingItem = {
+    tops: null,
+    bottoms: null,
+    coats: null,
+    socks: null,
+    boots: null,
+    decorations: null,
+    brows: "brows-1.png",
+    mouth: "mouth-1.png",
+    hairFront: "hair-front/hair-front-01-real.png",
+    hairBack: "hair-back/hair-back-01-real.png",
+    ears: "ears.png",
+    eyes: "eyes/eyes-01-real.png",
+  };
+
+  return defaults[category];
+};
+
 export const CharacterProvider = ({ children }: CharacterProviderProps) => {
+  const [lastChangedCategory, setLastChangedCategory] = useState<
+    keyof ClothingItem | null
+  >(null);
   const getCurrentOutfit = () => clothing;
   const [clothing, setClothing] = useState<ClothingItem>(() => {
     try {
@@ -91,11 +114,41 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
   }, [clothing]);
 
   const setItem = (category: keyof ClothingItem, item: string | null) => {
-    console.log(`Setting ${category} to:`, item);
+    setLastChangedCategory(category);
     setClothing((prev) => ({
       ...prev,
       [category]: item,
     }));
+  };
+
+  const removeLastItem = () => {
+    if (!lastChangedCategory) {
+      return;
+    }
+
+    const categoryNameMap: Record<keyof ClothingItem, string> = {
+      tops: "верх",
+      bottoms: "низ",
+      coats: "пальто",
+      socks: "носки",
+      boots: "обувь",
+      decorations: "украшение",
+      brows: "брови",
+      mouth: "рот",
+      hairFront: "передние волосы",
+      hairBack: "задние волосы",
+      ears: "уши",
+      eyes: "глаза",
+    };
+
+    const defaultValue = getDefaultValue(lastChangedCategory);
+
+    setClothing((prev) => ({
+      ...prev,
+      [lastChangedCategory]: defaultValue,
+    }));
+
+    setLastChangedCategory(null);
   };
 
   const resetAll = () => {
@@ -182,6 +235,7 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
         resetAll,
         getLayers,
         getCurrentOutfit,
+        removeLastItem,
       }}
     >
       {children}

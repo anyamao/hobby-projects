@@ -20,6 +20,7 @@ interface CRUDContextType {
   saveCurrentOutfit: (name?: string) => void;
   deleteOutfit: (id: string) => void;
   loadOutfit: (outfit: SavedOutfit) => void;
+  updateOutfit: (id: string, newClothing: any) => void;
 }
 
 const CRUDContext = createContext<CRUDContextType | undefined>(undefined);
@@ -95,10 +96,23 @@ export const CRUDProvider = ({ children }: { children: ReactNode }) => {
 
   const loadOutfit = (outfit: SavedOutfit) => {
     console.log("Loading outfit:", outfit);
-    if (confirm(`Загрузить наряд "${outfit.name}"?`)) {
-      localStorage.setItem("character-outfit", JSON.stringify(outfit.clothing));
-      window.location.reload();
-    }
+
+    localStorage.setItem("character-outfit", JSON.stringify(outfit.clothing));
+    window.location.reload();
+  };
+
+  const updateOutfit = (id: string, newClothing: any) => {
+    const updatedOutfits = savedOutfits.map((outfit) =>
+      outfit.id === id
+        ? {
+            ...outfit,
+            clothing: newClothing,
+          }
+        : outfit
+    );
+
+    setSavedOutfits(updatedOutfits);
+    localStorage.setItem("saved-outfits", JSON.stringify(updatedOutfits));
   };
 
   const generatePreview = (id: string) => {
@@ -126,6 +140,7 @@ export const CRUDProvider = ({ children }: { children: ReactNode }) => {
         saveCurrentOutfit,
         deleteOutfit,
         loadOutfit,
+        updateOutfit,
       }}
     >
       {children}
