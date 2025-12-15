@@ -1,8 +1,10 @@
 import { useCRUD } from "../contexts/CRUDContext";
 import { useCharacter } from "../contexts/CharacterContext";
 import OutfitPreview from "../layout/OutfitPreview";
+import { useTheme } from "../contexts/ThemeContext";
 
 const CRUD = () => {
+  const { theme } = useTheme();
   const {
     hideCRUD,
     savedOutfits,
@@ -39,7 +41,9 @@ const CRUD = () => {
         ></img>
         <p
           onClick={handleSaveCurrent}
-          className="text-white ml-[50px]  mt-[3px] text-[17px] hover:underline"
+          className={` ${
+            theme === "dark" ? "text-fifth" : "text-white"
+          } ml-[50px]  mt-[3px] text-[17px] hover:underline`}
         >
           Save new
         </p>

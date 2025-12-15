@@ -5,10 +5,12 @@ import { useSound } from "../hooks/useSound";
 import ChooseClothes from "../layout/ChooseClothes";
 import { useCharacter } from "../contexts/CharacterContext";
 import { useCRUD } from "../contexts/CRUDContext";
+import { useTheme } from "../contexts/ThemeContext";
 
 import { useMenu } from "../hooks/Menu";
 
 const DressUp = () => {
+  const { theme } = useTheme();
   const { getLayers, resetAll, removeLastItem } = useCharacter();
   const layers = getLayers();
   const { playClick, toggleMusic, isMusicPlaying } = useSound();
@@ -17,11 +19,24 @@ const DressUp = () => {
 
   return (
     <div className="min-w-screen min-h-screen top-0 left-0 bg-pink-200  flex flex-col items-center overflow-hidden">
-      <div className="w-full h-screen max-w-[700px] bg-blue-200 flex flex-col">
+      <div
+        className={`w-full h-screen max-w-[700px] bg-blue-200 flex flex-col ${
+          theme === "dark" ? "bg-first" : "bg-blue-200"
+        }`}
+      >
         <div className="flex flex-row justify-between">
           <div className=" flex items-center">
-            <img src="icons/direction.png" className="w-[80px] "></img>
-            <p className="text-gray-500 text-[20px]">₍^. .^₎⟆</p>
+            <img
+              src="icons/direction.png"
+              className="w-[80px] cursor-pointer "
+            ></img>
+            <p
+              className={` ${
+                theme === "dark" ? "text-sixth" : "text-gray-500"
+              } text-[20px]`}
+            >
+              ₍^. .^₎⟆
+            </p>
           </div>
           <img
             src="icons/more-icon.png"
@@ -32,7 +47,11 @@ const DressUp = () => {
             }}
           ></img>
         </div>
-        <div className="flex flex-row justify-end h-[560px] bg-blue-100">
+        <div
+          className={`flex flex-row justify-end h-[560px] ${
+            theme === "dark" ? "bg-second" : "bg-blue-100"
+          } `}
+        >
           <CharacterDisplay layers={layers} />
           <div className="flex flex-col items-center mt-[220px] z-50">
             <Menu />
@@ -45,8 +64,20 @@ const DressUp = () => {
                 else if (isVisible) hideCRUD();
               }}
             ></img>
-            <p className="text-gray-400 text-[20px] mt-[-10px] ">Save/</p>
-            <p className="text-gray-400 text-[20px] mt-[-10px] ">Upload</p>
+            <p
+              className={`${
+                theme === "dark" ? "text-sixth" : "text-gray-400"
+              } text-[20px] mt-[-10px] `}
+            >
+              Save/
+            </p>
+            <p
+              className={`${
+                theme === "dark" ? "text-sixth" : "text-gray-400"
+              } text-[20px] mt-[-10px] `}
+            >
+              Upload
+            </p>
             <img
               src="icons/restart-icon.png"
               className="w-[70px] hover:scale-110 transition-transform duration-300 cursor-pointer"
@@ -55,7 +86,13 @@ const DressUp = () => {
                 resetAll();
               }}
             ></img>
-            <p className="text-gray-400 text-[20px] mt-[-10px]">Clear All</p>
+            <p
+              className={`${
+                theme === "dark" ? "text-sixth" : "text-gray-400"
+              } text-[20px] mt-[-10px] `}
+            >
+              Clear All
+            </p>
             <img
               src="icons/delete-icon.png"
               className="w-[70px] hover:scale-110 transition-transform duration-300 cursor-pointer"
@@ -64,8 +101,20 @@ const DressUp = () => {
                 removeLastItem();
               }}
             ></img>
-            <p className="text-gray-400 text-[20px] mt-[-10px] ">Remove</p>
-            <p className="text-gray-400 text-[20px] mt-[-10px] ">Item</p>
+            <p
+              className={`${
+                theme === "dark" ? "text-sixth" : "text-gray-400"
+              } text-[20px] mt-[-10px] `}
+            >
+              Remove
+            </p>
+            <p
+              className={`${
+                theme === "dark" ? "text-sixth" : "text-gray-400"
+              } text-[20px] mt-[-10px] `}
+            >
+              Item
+            </p>
           </div>
         </div>
         <ChooseClothes />

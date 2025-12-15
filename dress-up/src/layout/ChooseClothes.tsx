@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useCharacter } from "../contexts/CharacterContext";
 import CRUD from "../hooks/CRUD";
 import { useCRUD } from "../contexts/CRUDContext";
+import { useTheme } from "../contexts/ThemeContext";
 
 interface Category {
   id: string;
@@ -20,6 +21,7 @@ interface ManifestData {
 }
 
 const ChooseClothes = () => {
+  const { theme } = useTheme();
   const { isVisible, hideModal } = useCRUD();
   const [manifest, setManifest] = useState<ManifestData | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -100,16 +102,26 @@ const ChooseClothes = () => {
               key={category.id}
               src={category.icon}
               onClick={() => setSelectedCategory(category.id)}
-              className={`"w-[70px] h-[70px] hover:border-2 hover:border-pink-100 transition-all duration-300 ${
+              className={`"w-[70px] h-[70px] hover:border-2  ${
+                theme === "dark"
+                  ? "hover:border-forth"
+                  : "hover:border-pink-100"
+              }transition-all duration-300 ${
                 selectedCategory === category.id
-                  ? " border-2 border-pink-100 "
+                  ? ` border-2 ${
+                      theme === "dark" ? "border-forth" : "border-pink-100"
+                    } `
                   : ""
               }`}
             ></img>
           ))}
         </div>
 
-        <div className="flex flex-1 bg-pink-300 min-h-0 overflow-auto  ">
+        <div
+          className={`flex flex-1 min-h-0 overflow-auto ${
+            theme === "dark" ? "bg-third" : "bg-pink-300"
+          } `}
+        >
           {" "}
           <div className="grid grid-cols-7 mt-[10px] mx-[10px] my-[10px]">
             {items.map((item) => (
@@ -129,7 +141,11 @@ const ChooseClothes = () => {
     );
   } else if (isVisible) {
     return (
-      <div className="flex flex-1  flex-col min-h-0 h- flex-col bg-pink-300 ">
+      <div
+        className={`flex flex-1  flex-col min-h-0 ${
+          theme === "dark" ? "bg-third" : "bg-pink-300"
+        } `}
+      >
         <CRUD></CRUD>
       </div>
     );
