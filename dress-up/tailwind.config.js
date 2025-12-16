@@ -13,6 +13,7 @@ export default {
         seventh: "rgba(183, 150, 212, 1)",
         eight: "rgba(255, 255, 255, 0.22)",
         ninth: "rgba(255, 255, 255, 0.46)",
+        tenth: "rgba(122, 92, 151, 1)",
       },
     },
   },

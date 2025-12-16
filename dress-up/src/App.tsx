@@ -4,7 +4,7 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CharacterProvider } from "./contexts/CharacterContext";
 import DressUp from "./layout/DressUp";
 import { CRUDProvider } from "./contexts/CRUDContext";
@@ -14,16 +14,49 @@ import "./App.css";
 
 function Home() {
   const navigate = useNavigate();
+  useEffect(() => {
+    // Устанавливаем favicon
+    const setFavicon = () => {
+      let link = document.querySelector("link[rel*='icon']") as HTMLLinkElement;
+
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "icon";
+        document.head.appendChild(link);
+      }
+
+      link.href = "icons/heart.png";
+      link.type = "image/png";
+    };
+
+    // Устанавливаем title
+    document.title = "Dress Up Game| Home";
+
+    setFavicon();
+  }, []);
+
   return (
-    <div className="w-screen h-screen right-0 top-0 flex flex-col items-center justify-center">
-      <div className=" bg-white w-[500px] h-[300px] flex items-center justify-center mt-[300px] rounded-[10px] z-5 border-[10px] border-pink-200">
-        <button
-          className="mr-[100px] bg-purple-900 hover:bg-purple-700 z-20 mt-[-5px]"
+    <div className="w-screen h-screen right-0 top-0 flex flex-col  items-center justify-between  bg-tenth">
+      <div className="  items-center justify-center top-0 text-pink-200">
+        {" "}
+        ⏔⏔⏔ ꒰ ᧔ෆ᧓ ꒱ ⏔⏔⏔
+      </div>
+
+      <div className="flex items-center justify-center mt-[300px] background-green-200">
+        <img
+          src="icons/background-name.png"
+          className="w-[600px]  fixed mb-[400px]  rounded-full"
+        ></img>
+        <img
+          src="icons/background-button.png"
+          className="w-[200px]  fixed mb-[320px] mr-[190px] rounded-full hover:scale-105 transition-transform duration:300"
           onClick={() => navigate("/dress-up")}
-        >
-          Go dress up
-        </button>
-        <img src="ch2.png" className="w-[900px] z-1 fixed ml-[300px]"></img>
+        ></img>
+      </div>
+
+      <div className=" items-center justify-center top-0 text-pink-200">
+        {" "}
+        ⏔⏔⏔ ꒰ ᧔ෆ᧓ ꒱ ⏔⏔⏔
       </div>
     </div>
   );

@@ -55,6 +55,11 @@
       "icon": "blocks/back-hair-block.png",
       "items": [
         {
+          "id": "empty",
+          "preview": "empty-layer.png",
+          "real": "empty-layer.png"
+        },
+        {
           "id": "hair-back-01",
           "preview": "hair-back/hair-back-01-preview.png",
           "real": "hair-back/hair-back-01-real.png"

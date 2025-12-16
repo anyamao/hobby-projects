@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CharacterDisplay from "../hooks/CharacterDisplay";
 import { useSound } from "../hooks/useSound";
 import ChooseClothes from "../layout/ChooseClothes";
@@ -10,15 +10,23 @@ import { useTheme } from "../contexts/ThemeContext";
 import { useMenu } from "../hooks/Menu";
 
 const DressUp = () => {
+  const navigate = useNavigate();
   const { theme } = useTheme();
   const { getLayers, resetAll, removeLastItem } = useCharacter();
   const layers = getLayers();
   const { playClick, toggleMusic, isMusicPlaying } = useSound();
   const { showCRUD, hideCRUD, isVisible } = useCRUD();
   const { Menu, showMenu, show, hide } = useMenu();
+  useEffect(() => {
+    document.title = "Dress Up Game | Create Your Character";
+  }, []);
 
   return (
-    <div className="min-w-screen min-h-screen top-0 left-0 bg-pink-200  flex flex-col items-center overflow-hidden">
+    <div
+      className={`min-w-screen min-h-screen top-0 left-0 ${
+        theme === "dark" ? " bg-tenth" : "bg-pink-200"
+      } flex flex-col items-center overflow-hidden`}
+    >
       <div
         className={`w-full h-screen max-w-[700px] bg-blue-200 flex flex-col ${
           theme === "dark" ? "bg-first" : "bg-blue-200"
@@ -33,11 +41,19 @@ const DressUp = () => {
                   : "icons/direction.png"
               }`}
               className="w-[80px] cursor-pointer "
+              onClick={() => {
+                playClick();
+                navigate("/"); // Переход на главную
+              }}
             ></img>
             <p
               className={` ${
                 theme === "dark" ? "text-sixth" : "text-gray-500"
               } text-[20px]`}
+              onClick={() => {
+                playClick();
+                navigate("/"); // Переход на главную
+              }}
             >
               ₍^. .^₎⟆
             </p>
